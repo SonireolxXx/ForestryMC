@@ -46,7 +46,7 @@ import forestry.core.render.ForestryResource;
 import forestry.core.tiles.IClimatised;
 import forestry.energy.EnergyManager;
 
-public abstract class GuiForestry<C extends Container> extends GuiContainer {
+public abstract class GuiForestry<C extends Container> extends GuiContainer implements IGuiSizable {
 	protected final C container;
 
 	public final ResourceLocation textureFile;
@@ -235,9 +235,9 @@ public abstract class GuiForestry<C extends Container> extends GuiContainer {
 	protected void drawBackground(){
 		bindTexture(textureFile);
 
-		int x = (width - xSize) / 2;
-		int y = (height - ySize) / 2;
-		drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+		//int x = (width - xSize) / 2;
+		//int y = (height - ySize) / 2;
+		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	}
 
 	protected void drawWidgets() {
@@ -255,10 +255,12 @@ public abstract class GuiForestry<C extends Container> extends GuiContainer {
 		this.zLevel = level;
 	}
 
+	@Override
 	public int getSizeX() {
 		return xSize;
 	}
 
+	@Override
 	public int getSizeY() {
 		return ySize;
 	}
@@ -271,6 +273,11 @@ public abstract class GuiForestry<C extends Container> extends GuiContainer {
 	@Override
 	public int getGuiTop() {
 		return guiTop;
+	}
+
+	@Override
+	public Minecraft getMC() {
+		return mc;
 	}
 
 	@Override

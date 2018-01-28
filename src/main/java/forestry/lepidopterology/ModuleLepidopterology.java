@@ -46,10 +46,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.Forestry;
 import forestry.api.arboriculture.TreeManager;
+import forestry.api.book.IBookCategory;
+import forestry.api.book.IForesterBook;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.genetics.IAllele;
 import forestry.api.lepidopterology.ButterflyManager;
+import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.IAlleleButterflyCocoon;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;
 import forestry.api.modules.ForestryModule;
@@ -79,7 +82,7 @@ import forestry.lepidopterology.tiles.TileCocoon;
 import forestry.lepidopterology.worldgen.CocoonDecorator;
 import forestry.modules.BlankForestryModule;
 import forestry.modules.ForestryModuleUids;
-import forestry.modules.ModuleManager;
+import forestry.modules.ModuleHelper;
 
 @ForestryModule(containerID = Constants.MOD_ID, moduleID = ForestryModuleUids.LEPIDOPTEROLOGY, name = "Lepidopterology", author = "SirSengir", url = Constants.URL, unlocalizedDescription = "for.module.lepidopterology.description")
 public class ModuleLepidopterology extends BlankForestryModule {
@@ -141,7 +144,7 @@ public class ModuleLepidopterology extends BlankForestryModule {
 
 		proxy.preInitializeRendering();
 
-		if(ModuleManager.getInstance().isModuleEnabled(Constants.MOD_ID, ForestryModuleUids.SORTING)){
+		if(ModuleHelper.isEnabled(ForestryModuleUids.SORTING)){
 			LepidopterologyFilterRule.init();
 			LepidopterologyFilterRuleType.init();
 		}
@@ -181,6 +184,11 @@ public class ModuleLepidopterology extends BlankForestryModule {
 
 		RecipeSorter.register("forestry:lepidopterologymating", MatingRecipe.class, RecipeSorter.Category.SHAPELESS,
 				"before:minecraft:shapeless");
+	}
+
+	@Override
+	public void registerBookEntries(IForesterBook book) {
+		IBookCategory category = book.addCategory("lepidopterology").setStack(ButterflyDefinition.BlueWing.getMemberStack(EnumFlutterType.BUTTERFLY));
 	}
 
 	@Override

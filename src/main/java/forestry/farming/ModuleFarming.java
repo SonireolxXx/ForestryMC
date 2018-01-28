@@ -26,7 +26,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -39,6 +38,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.Forestry;
+import forestry.api.book.IBookCategory;
+import forestry.api.book.IForesterBook;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.CircuitSocketType;
 import forestry.api.circuits.ICircuitLayout;
@@ -90,6 +91,7 @@ import forestry.farming.tiles.TileFarmValve;
 import forestry.farming.triggers.FarmingTriggers;
 import forestry.modules.BlankForestryModule;
 import forestry.modules.ForestryModuleUids;
+import forestry.modules.ModuleHelper;
 
 @ForestryModule(containerID = Constants.MOD_ID, moduleID = ForestryModuleUids.FARMING, name = "Farming", author = "SirSengir", url = Constants.URL, unlocalizedDescription = "for.module.farming.description")
 public class ModuleFarming extends BlankForestryModule {
@@ -130,7 +132,7 @@ public class ModuleFarming extends BlankForestryModule {
 		IFarmRegistry registry = ForestryAPI.farmRegistry;
 		
 		registry.registerFarmables("farmArboreal", new FarmableVanillaSapling());
-		if (ForestryAPI.enabledModules.contains(new ResourceLocation(Constants.MOD_ID, ForestryModuleUids.ARBORICULTURE))) {
+		if (ModuleHelper.isEnabled(ForestryModuleUids.ARBORICULTURE)) {
 			registry.registerFarmables("farmArboreal", new FarmableGE());
 		}
 
@@ -343,6 +345,12 @@ public class ModuleFarming extends BlankForestryModule {
 		ChipsetManager.solderManager.addRecipe(layoutManual, coreItems.tubes.get(EnumElectronTube.DIAMOND, 1), Circuits.farmCocoaManual);
 		ChipsetManager.solderManager.addRecipe(layoutManual, coreItems.tubes.get(EnumElectronTube.EMERALD, 1), Circuits.farmOrchardManual);
 		ChipsetManager.solderManager.addRecipe(layoutManual, coreItems.tubes.get(EnumElectronTube.ENDER, 1), Circuits.farmEnderManual);
+	}
+
+	@Override
+	public void registerBookEntries(IForesterBook book) {
+		IBookCategory category = book.addCategory("farming")
+			.setStack(new ItemStack(Items.WHEAT));
 	}
 
 	@Override

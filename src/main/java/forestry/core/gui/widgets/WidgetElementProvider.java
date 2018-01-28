@@ -1,16 +1,15 @@
 package forestry.core.gui.widgets;
 
 import javax.annotation.Nullable;
-
 import java.util.List;
 
-import forestry.core.gui.elements.GuiElementScrollable;
+import forestry.core.gui.elements.layouts.ScrollableElement;
 import forestry.core.gui.tooltips.ToolTip;
 
 public class WidgetElementProvider extends Widget implements IScrollable{
-	protected GuiElementScrollable scrollable;
+	protected ScrollableElement scrollable;
 
-	public WidgetElementProvider(WidgetManager manager, int xPos, int yPos, int width, int height, GuiElementScrollable scrollable) {
+	public WidgetElementProvider(WidgetManager manager, int xPos, int yPos, int width, int height, ScrollableElement scrollable) {
 		super(manager, xPos, yPos);
 		this.scrollable = scrollable;
 		this.width = width;
@@ -19,7 +18,7 @@ public class WidgetElementProvider extends Widget implements IScrollable{
 
 	@Override
 	public void draw(int startX, int startY) {
-		scrollable.draw(startX + xPos, startY + yPos);
+		scrollable.draw(startX + xPos, startY + yPos, 0, 0);
 	}
 
 	@Nullable
@@ -27,7 +26,7 @@ public class WidgetElementProvider extends Widget implements IScrollable{
 	public ToolTip getToolTip(int mouseX, int mouseY) {
 		mouseX-=xPos;
 		mouseY-=yPos;
-		List<String> tooltip = scrollable.getToolTip(mouseX, mouseY);
+		List<String> tooltip = scrollable.getTooltip(mouseX, mouseY);
 		if(tooltip.isEmpty()){
 			return null;
 		}
