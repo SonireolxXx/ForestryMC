@@ -298,14 +298,15 @@ public class TextPageParser implements IBookPageFactory {
 	}
 
 	private static class PageBuilder {
-		public static final ResourceLocation BOOK_TEXTURE = new ResourceLocation(Constants.MOD_ID, Constants.TEXTURE_PATH_GUI + "/atlas.png");
-		public static final ResourceLocation BOOK_CRAFTING_TEXTURE = new ResourceLocation(Constants.MOD_ID, Constants.TEXTURE_PATH_GUI + "/atlas_crafting.png");
-		public static final Drawable CRAFTING_GRID = new Drawable(BOOK_TEXTURE, 158, 181, 98, 58);
-		public static final Drawable SLOT = new Drawable(BOOK_TEXTURE, 0, 223, 18, 18);
-		public static final Drawable MUTATION_PLUS = new Drawable(BOOK_TEXTURE, 0, 241, 15, 15);
-		public static final Drawable MUTATION_ARROW = new Drawable(BOOK_TEXTURE, 15, 241, 18, 15);
-		public static final Drawable CARPENTER_BACKGROUND = new Drawable(BOOK_CRAFTING_TEXTURE, 0, 0, 108, 60);
-		public static final Drawable CARPENTER_TANK_OVERLAY = new Drawable(BOOK_CRAFTING_TEXTURE, 109, 1, 16, 58);
+		/* Constants */
+		private static final ResourceLocation BOOK_TEXTURE = new ResourceLocation(Constants.MOD_ID, Constants.TEXTURE_PATH_GUI + "/atlas.png");
+		private static final ResourceLocation BOOK_CRAFTING_TEXTURE = new ResourceLocation(Constants.MOD_ID, Constants.TEXTURE_PATH_GUI + "/atlas_crafting.png");
+		private static final Drawable CRAFTING_GRID = new Drawable(BOOK_TEXTURE, 158, 181, 98, 58);
+		private static final Drawable SLOT = new Drawable(BOOK_TEXTURE, 0, 223, 18, 18);
+		private static final Drawable MUTATION_PLUS = new Drawable(BOOK_TEXTURE, 0, 241, 15, 15);
+		private static final Drawable MUTATION_ARROW = new Drawable(BOOK_TEXTURE, 15, 241, 18, 15);
+		private static final Drawable CARPENTER_BACKGROUND = new Drawable(BOOK_CRAFTING_TEXTURE, 0, 0, 108, 60);
+		private static final Drawable CARPENTER_TANK_OVERLAY = new Drawable(BOOK_CRAFTING_TEXTURE, 109, 1, 16, 58);
 
 		private static final int PAGE_HEIGHT = 155;
 

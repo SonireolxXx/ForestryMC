@@ -4,7 +4,10 @@ import java.util.stream.Stream;
 
 import forestry.core.config.Constants;
 
-public class ModuleHelper {
+public final class ModuleHelper {
+
+	private ModuleHelper() {
+	}
 
 	public static boolean isEnabled(String moduleID) {
 		return isModuleEnabled(Constants.MOD_ID, moduleID);
