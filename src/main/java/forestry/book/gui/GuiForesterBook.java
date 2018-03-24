@@ -79,6 +79,8 @@ public abstract class GuiForesterBook extends GuiScreen implements IGuiSizable {
 		manager.bindTexture(TEXTURE);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, X_SIZE, Y_SIZE);
 
+		super.drawScreen(mouseX, mouseY, partialTicks);
+
 		boolean unicode = fontRenderer.getUnicodeFlag();
 		fontRenderer.setUnicodeFlag(true);
 		drawCenteredString(fontRenderer, TextFormatting.UNDERLINE + getTitle(), guiLeft + LEFT_PAGE_START_X + 52, guiTop + PAGE_START_Y, 0xD3D3D3);
@@ -88,7 +90,6 @@ public abstract class GuiForesterBook extends GuiScreen implements IGuiSizable {
 		fontRenderer.setUnicodeFlag(unicode);
 
 		drawPages();
-		super.drawScreen(mouseX, mouseY, partialTicks);
 
 		InventoryPlayer playerInv = mc.player.inventory;
 

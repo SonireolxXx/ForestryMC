@@ -24,8 +24,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import forestry.api.book.IBookCategory;
-import forestry.api.book.IForesterBook;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.CircuitSocketType;
 import forestry.api.circuits.ICircuitLayout;
@@ -260,11 +258,6 @@ public class ModuleGreenhouse extends BlankForestryModule {
 		ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.BLAZE, 1), Circuits.climatiserTemperature2);
 		ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.LAPIS, 1), Circuits.climatiserHumidity1);
 		ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.OBSIDIAN, 1), Circuits.climatiserHumidity2);
-	}
-
-	@Override
-	public void registerBookEntries(IForesterBook book) {
-		IBookCategory category = book.addCategory("greenhouse").setStack(new ItemStack(getBlocks().greenhouseBlock));
 	}
 
 	@Override

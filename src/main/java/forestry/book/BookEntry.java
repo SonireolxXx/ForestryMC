@@ -1,5 +1,8 @@
 package forestry.book;
 
+import javax.annotation.Nullable;
+import java.util.function.Function;
+
 import net.minecraft.item.ItemStack;
 
 import forestry.api.book.IBookEntry;
@@ -9,16 +12,34 @@ import forestry.core.utils.Translator;
 
 public class BookEntry implements IBookEntry {
 	private final String name;
-	private IBookPageFactory loader = TextPageParser.INSTANCE;
-	private ItemStack stack = ItemStack.EMPTY;
+	private final ItemStack stack;
+	private final IBookPageFactory loader;
+	@Nullable
+	private final IBookEntry parent;
+	private final IBookEntry[] subEntries;
 
 	public BookEntry(String name) {
-		this.name = name;
+		this(name, ItemStack.EMPTY, null);
 	}
 
-	@Override
-	public void setLoader(IBookPageFactory loader) {
+	public BookEntry(String name, ItemStack stack, @Nullable IBookEntry parent) {
+		this(name, stack, TextPageParser.INSTANCE, new IBookEntry[0], parent);
+	}
+
+	public BookEntry(String name, ItemStack stack, IBookPageFactory loader, IBookEntry[] subEntries, @Nullable IBookEntry parent) {
+		this.name = name;
+		this.stack = stack;
 		this.loader = loader;
+		this.subEntries = subEntries;
+		this.parent = parent;
+	}
+
+	public BookEntry(String name, ItemStack stack, IBookPageFactory loader, Function<IBookEntry, IBookEntry[]> subEntryFactory, @Nullable IBookEntry parent) {
+		this.name = name;
+		this.stack = stack;
+		this.loader = loader;
+		this.subEntries = subEntryFactory.apply(this);
+		this.parent = parent;
 	}
 
 	@Override
@@ -29,11 +50,6 @@ public class BookEntry implements IBookEntry {
 	@Override
 	public ItemStack getStack() {
 		return stack;
-	}
-
-	@Override
-	public void setStack(ItemStack stack) {
-		this.stack = stack;
 	}
 
 	@Override
@@ -53,6 +69,12 @@ public class BookEntry implements IBookEntry {
 
 	@Override
 	public IBookEntry[] getSubEntries() {
-		return new IBookEntry[0];
+		return subEntries;
+	}
+
+	@Override
+	@Nullable
+	public IBookEntry getParent() {
+		return parent;
 	}
 }

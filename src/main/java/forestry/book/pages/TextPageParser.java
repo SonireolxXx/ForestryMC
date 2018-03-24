@@ -185,33 +185,33 @@ public class TextPageParser implements IBookPageFactory {
 		for (String line : lines) {
 			if (line.contains("<0>")) {
 				String[] t = line.split("<0>");
-				if (t.length > 0) {
+				if (t.length > 0 && fontRenderer.getStringWidth(t[0]) > 0) {
 					builder.add(t[0]);
 				}
 				IRecipe recipe = recipes.remove(0);
 				builder.add(recipe);
-				if (t.length > 1) {
+				if (t.length > 1 && fontRenderer.getStringWidth(t[1]) > 0) {
 					builder.add(t[1]);
 				}
 				continue;
 			} else if (line.contains("<1>")) {
 				String[] t = line.split("<1>");
-				if (t.length > 0) {
+				if (t.length > 0 && fontRenderer.getStringWidth(t[0]) > 0) {
 					builder.add(t[0]);
 				}
 				Image image = images.remove(0);
 				builder.add(image);
-				if (t.length > 1) {
+				if (t.length > 1 && fontRenderer.getStringWidth(t[1]) > 0) {
 					builder.add(t[1]);
 				}
 				continue;
 			} else if (line.contains("<3>")) {
 				String[] t = line.split("<3>");
-				if (t.length > 0) {
+				if (t.length > 0 && fontRenderer.getStringWidth(t[0]) > 0) {
 					builder.add(t[0]);
 				}
 				builder.page(true, 0);
-				if (t.length > 1) {
+				if (t.length > 1 && fontRenderer.getStringWidth(t[1]) > 0) {
 					builder.add(t[1]);
 				}
 				continue;
@@ -220,34 +220,34 @@ public class TextPageParser implements IBookPageFactory {
 				continue;
 			} else if (line.contains("<5>")) {
 				String[] t = line.split("<5>");
-				if (t.length > 0) {
+				if (t.length > 0 && fontRenderer.getStringWidth(t[0]) > 0) {
 					builder.add(t[0]);
 				}
 				IMultiblockBlueprint blueprint = blueprints.remove(0);
 				builder.add(blueprint);
-				if (t.length > 1) {
+				if (t.length > 1 && fontRenderer.getStringWidth(t[1]) > 0) {
 					builder.add(t[1]);
 				}
 				continue;
 			}else if(line.contains("<7>")){
 				String[] t = line.split("<7>");
-				if (t.length > 0) {
+				if (t.length > 0 && fontRenderer.getStringWidth(t[0]) > 0) {
 					builder.add(t[0]);
 				}
 				IAlleleSpecies species = mutations.remove(0);
 				builder.add(species);
-				if (t.length > 1) {
+				if (t.length > 1 && fontRenderer.getStringWidth(t[1]) > 0) {
 					builder.add(t[1]);
 				}
 				continue;
 			} else if(line.contains("<8>")){
 				String[] t = line.split("<8>");
-				if (t.length > 0) {
+				if (t.length > 0 && fontRenderer.getStringWidth(t[0]) > 0) {
 					builder.add(t[0]);
 				}
 				ItemStack stack = carpenterRecipes.remove(0);
 				builder.addCarpenter(stack);
-				if (t.length > 1) {
+				if (t.length > 1 && fontRenderer.getStringWidth(t[1]) > 0) {
 					builder.add(t[1]);
 				}
 				continue;

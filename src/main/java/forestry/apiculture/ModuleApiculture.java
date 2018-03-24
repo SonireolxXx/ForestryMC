@@ -65,7 +65,6 @@ import forestry.api.apiculture.IArmorApiarist;
 import forestry.api.apiculture.IBeekeepingMode;
 import forestry.api.apiculture.hives.HiveManager;
 import forestry.api.apiculture.hives.IHiveRegistry.HiveType;
-import forestry.api.book.IBookCategory;
 import forestry.api.book.IForesterBook;
 import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.AlleleManager;
@@ -371,9 +370,9 @@ public class ModuleApiculture extends BlankForestryModule {
 
 	@Override
 	public void registerBookEntries(IForesterBook book) {
-		IBookCategory category = book.addCategory("beekeeping")
+		book.addCategory("beekeeping")
 			.setStack(getItems().beeComb.get(EnumHoneyComb.HONEY, 1))
-			.addEntry("introduction", new ItemStack(Items.BOOK))
+			.addEntry("bee_introduction", new ItemStack(Items.BOOK))
 			.addEntry("bees", getItems().beeComb.get(EnumHoneyComb.HONEY, 1))
 			.addEntry("smoker", getItems().smoker.getItemStack())
 			.addEntry("scoop", getItems().scoop.getItemStack())

@@ -16,6 +16,10 @@ public interface IBookCategory {
 
 	IBookCategory addEntry(String name, ItemStack stack);
 
+	IBookEntryBuilder createEntry(String name);
+
+	IBookEntryBuilder createEntry(String name, ItemStack stack);
+
 	Collection<IBookEntry> getEntries();
 
 	@Nullable

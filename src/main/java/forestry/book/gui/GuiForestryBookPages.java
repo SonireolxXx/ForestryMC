@@ -16,10 +16,13 @@ import forestry.api.book.IBookPage;
 import forestry.api.book.IForesterBook;
 import forestry.book.gui.buttons.GuiButtonBack;
 import forestry.book.gui.buttons.GuiButtonPage;
+import forestry.book.gui.buttons.GuiButtonSubEntry;
 
 public class GuiForestryBookPages extends GuiForesterBook {
 	private final IBookCategory category;
 	private final IBookEntry entry;
+	@Nullable
+	private final IBookEntry parent;
 	private List<IBookPage> pages;
 	private int pageIndex = 0;
 	@Nullable
@@ -27,10 +30,11 @@ public class GuiForestryBookPages extends GuiForesterBook {
 	@Nullable
 	private IBookPage rightPage;
 
-	public GuiForestryBookPages(IForesterBook book, IBookCategory category, IBookEntry entry) {
+	public GuiForestryBookPages(IForesterBook book, IBookCategory category, IBookEntry entry, @Nullable IBookEntry parent) {
 		super(book);
 		this.category = category;
 		this.entry = entry;
+		this.parent = parent;
 		this.pages = Collections.emptyList();
 		initPages();
 	}
@@ -71,6 +75,13 @@ public class GuiForestryBookPages extends GuiForesterBook {
 				rightPage.initPage(this);
 			}
 		}
+		IBookEntry firstEntry = parent != null ? parent : entry;
+		addButton(new GuiButtonSubEntry(buttonList.size(), guiLeft + -24, guiTop + 12, firstEntry, entry));
+		IBookEntry[] subEntries = firstEntry.getSubEntries();
+		for(int i = 0;i < subEntries.length;i++){
+			IBookEntry subEntry = subEntries[i];
+			addButton(new GuiButtonSubEntry(buttonList.size(), guiLeft + -24, guiTop + 12 + ((i + 1) * 22), subEntry, entry));
+		}
 	}
 
 	@Override
@@ -110,6 +121,9 @@ public class GuiForestryBookPages extends GuiForesterBook {
 				setPages(pageIndex + 2);
 			}
 			initGui();
+		}else if(button instanceof GuiButtonSubEntry){
+			GuiButtonSubEntry subEntry = (GuiButtonSubEntry) button;
+			mc.displayGuiScreen(new GuiForestryBookPages(book, category, subEntry.subEntry, parent != null ? parent : entry));
 		}else if(button instanceof GuiButtonBack || pages.isEmpty()){
 			displayEntries();
 		}else if(leftPage != null) {
