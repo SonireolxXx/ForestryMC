@@ -19,13 +19,19 @@ import forestry.core.items.ItemOverlay;
 import net.minecraft.init.Items;
 
 public enum EnumStampDefinition implements ItemOverlay.IOverlayInfo {
-	P_1("1n", EnumPostage.P_1, "gemApatite", new Color(0x4a8ca7), new Color(0xffffff)),
-	P_2("2n", EnumPostage.P_2, "ingotCopper", new Color(0xe8c814), new Color(0xffffff)),
-	P_5("5n", EnumPostage.P_5, "ingotTin", new Color(0x9c0707), new Color(0xffffff)),
-	P_10("10n", EnumPostage.P_10, "ingotGold", new Color(0x7bd1b8), new Color(0xffffff)),
-	P_20("20n", EnumPostage.P_20, "gemDiamond", new Color(0xff9031), new Color(0xfff7dd)),
-	P_50("50n", EnumPostage.P_50, "gemEmerald", new Color(0x6431d7), new Color(0xfff7dd)),
-	P_100("100n", EnumPostage.P_100, Items.NETHER_STAR, new Color(0xd731ba), new Color(0xfff7dd)),
+	P_1("1n", EnumPostage.P_1, "gemApatite", new Color(0xff0000), new Color(0xffffff)),
+	P_2("2n", EnumPostage.P_2, "ingotCopper", new Color(0xff7200), new Color(0xffffff)),
+	P_5("5n", EnumPostage.P_5, "ingotTin", new Color(0xffd000), new Color(0xffffff)),
+	P_10("10n", EnumPostage.P_10, "ingotGold", new Color(0xf9ff00), new Color(0xffffff)),
+	P_20("20n", EnumPostage.P_20, "gemDiamond", new Color(0x9bff00), new Color(0xfff7dd)),
+	P_50("50n", EnumPostage.P_50, "gemEmerald", new Color(0x00ff10), new Color(0xfff7dd)),
+	P_100("100n", EnumPostage.P_100, Items.NETHER_STAR, new Color(0x00ffe5), new Color(0xfff7dd)),
+	P_200("200n", EnumPostage.P_200, Items.NETHER_STAR, new Color(0x00b1ff), new Color(0xfff7dd)),
+	P_500("500n", EnumPostage.P_500, Items.NETHER_STAR, new Color(0x0044ff), new Color(0xfff7dd)),
+	P_1000("1000n", EnumPostage.P_1000, Items.NETHER_STAR, new Color(0x7500ff), new Color(0xfff7dd)),
+	P_2000("2000n", EnumPostage.P_2000, Items.NETHER_STAR, new Color(0xdd00ff), new Color(0xfff7dd)),
+	P_5000("5000n", EnumPostage.P_5000, Items.NETHER_STAR, new Color(0xff00ab), new Color(0xfff7dd)),
+	P_10000("10000n", EnumPostage.P_10000, Items.NETHER_STAR, new Color(0x000000), new Color(0xfff7dd))
 	//	P_200("200n", EnumPostage.P_200, Items.NETHER_STAR, new Color(0xcd9831), new Color(0xfff7dd)),
 	;
 
